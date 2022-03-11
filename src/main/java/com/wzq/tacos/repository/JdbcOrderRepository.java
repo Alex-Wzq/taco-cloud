@@ -18,7 +18,7 @@ import java.util.Map;
  * @date 2022/3/10 19:59
  */
 @Repository
-public class JdbcOrderRepository implements OrderRepository {
+public class JdbcOrderRepository {
 
     private SimpleJdbcInsert orderInserter;
 
@@ -38,8 +38,7 @@ public class JdbcOrderRepository implements OrderRepository {
 
         this.objectMapper = new ObjectMapper();
     }
-
-    @Override
+    
     public Order save(Order order) {
         order.setPlacedAt(new Date());
         long orderId = saveOrderDetails(order);

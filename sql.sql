@@ -119,3 +119,34 @@ create table if not exists Taco_Order_Tacos
     not
     null
 );
+
+create table if not exists Taco
+(
+    `id`
+    bigint,
+    `username`
+    varchar
+(
+    50
+), `password` varchar
+(
+    50
+), `fullname` varchar
+(
+    50
+), `street` varchar
+(
+    50
+), `city` varchar
+(
+    50
+), `state` varchar
+(
+    50
+)), `zip` varchar
+(
+    50
+), `phoneNumber` varchar
+(
+    50
+))

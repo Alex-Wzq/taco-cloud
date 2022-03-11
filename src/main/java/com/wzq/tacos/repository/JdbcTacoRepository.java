@@ -1,5 +1,6 @@
 package com.wzq.tacos.repository;
 
+import com.wzq.tacos.model.Ingredient;
 import com.wzq.tacos.model.Taco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,16 +21,15 @@ import java.util.Date;
  * @date 2022/3/10 19:20
  */
 @Repository
-public class JdbcTacoRepository implements TacoRepository {
+public class JdbcTacoRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
-
-    @Override
+    
     public Taco save(Taco taco) {
         long tacoId = saveTacoInfo(taco);
         taco.setId(tacoId);
-        for (String ingredient : taco.getIngredients()) {
+        for (Ingredient ingredient : taco.getIngredients()) {
             saveIngredientToTaco(ingredient, tacoId);
         }
         return taco;
@@ -54,7 +54,7 @@ public class JdbcTacoRepository implements TacoRepository {
         return keyHolder.getKey().longValue();
     }
 
-    private void saveIngredientToTaco(String ingredient, long tacoId) {
+    private void saveIngredientToTaco(Ingredient ingredient, long tacoId) {
         jdbc.update(
                 "insert into Taco_Ingredients (taco, ingredient) " + "values (?, ?)",
                 tacoId, ingredient);

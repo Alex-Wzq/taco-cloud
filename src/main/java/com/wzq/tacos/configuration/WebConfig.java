@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         // 视图控制器处理 GET 请求的路径
         registry.addViewController("/").setViewName("home");
+        registry.addViewController("/login");
     }
 
 }

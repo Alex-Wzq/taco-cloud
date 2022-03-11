@@ -36,6 +36,7 @@ public class DesignTacoController {
     // @ModelAttribute 注解确保在模型中能够创建 Order 对象
     // 返回值对象会被默认放到隐含的Model中，在Model中的key为返回值首字母小写，value为返回的值。
     @ModelAttribute(name = "order")
+    
     public Order order() {
         return new Order();
     }

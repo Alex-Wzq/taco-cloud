@@ -13,17 +13,15 @@ import java.sql.SQLException;
  * @date 2022/3/10 15:39
  */
 @Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+public class JdbcIngredientRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
 
-    @Override
     public Iterable<Ingredient> findAll() {
         return jdbc.query("select id, name, type from Ingredient", this::mapRowToIngredient);
     }
 
-    @Override
     public Ingredient save(Ingredient ingredient) {
         jdbc.update(
                 "insert into Ingredient (id, name, type) values (?, ?, ?)",
@@ -33,7 +31,6 @@ public class JdbcIngredientRepository implements IngredientRepository {
         return ingredient;
     }
 
-    @Override
     public Ingredient findOne(String id) {
         return jdbc.queryForObject(
                 "select id, name, type from Ingredient where id=?",
